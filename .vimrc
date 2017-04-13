@@ -16,6 +16,7 @@ Plugin 'fholgado/minibufexpl.vim'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'Yggdroot/indentLine'
 call vundle#end()
 filetype plugin indent on
 
@@ -67,22 +68,57 @@ let g:airline_symbols.maxlinenr = '☰'
 " Font from https://github.com/ryanoasis/nerd-fonts
 "}}}
 
+ 
+" indentLine{{{
+let g:indentLine_char = '|'
+let g:indentLine_enabled = 1
+" }}}
 
-" Plugin YCM settings.
-set completeopt=longest,menu
+" minibuffexploer{{{
+map <Leader>bl :MEBToggle<cr>
+" buffer shift shortcut
+map <C-Tab> :MBEbn<cr>
+map <C-S-Tab> :MBEbp<cr>
+" }}}
+
+
+"" Plugin YCM settings.
+"let g:ycm_complete_in_strings = 1
+"let g:ycm_collect_identifiers_from_comments_and_strings = 0
+"let g:ycm_python_binary_path = 'python'
+"let g:ycm_path_to_python_interpreter = '/home/xr7/apps/anaconda2/bin/python'
+""let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+"let g:syntastic_check_on_open=1
+"let g:syntastic_enable_signs=1
+"let g:syntastic_cpp_check_header = 1
+"let g:syntastic_cpp_remove_include_errors = 1
+" YCM{{{
+" global conf
+"let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+" complete is enabled in comments
+let g:ycm_complete_in_comments=1
+" allow vim load .ycm_extra_conf.py
+let g:ycm_confirm_extra_conf=0
+" turn on YCM tag complete engine
+let g:ycm_collect_identifiers_from_tags_files=1
+" include tags
+"set tags+=/data/misc/software/misc./vim/stdcpp.tags
+" YCM OmniCppComplete engine. Set shortcut to ;;
+inoremap <leader>; <C-x><C-o>
+" show list only
+set completeopt-=preview
+" start completing from the first character inputed
 let g:ycm_min_num_of_chars_for_completion=2
+" disable cache
 let g:ycm_cache_omnifunc=0
+" syntax complete
 let g:ycm_seed_identifiers_with_syntax=1
-let g:ycm_complete_in_comments = 1
-let g:ycm_complete_in_strings = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 0
-let g:ycm_python_binary_path = 'python'
-let g:ycm_path_to_python_interpreter = '/home/xr7/apps/anaconda2/bin/python'
-"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:syntastic_check_on_open=1
-let g:syntastic_enable_signs=1
-let g:syntastic_cpp_check_header = 1
-let g:syntastic_cpp_remove_include_errors = 1
+" complete c function: ALT + ;
+" default is Ctrl + Space, which is switching input method
+"let g:ycm_key_invoke_completion = '<M-;>'
+" go to definition: ALT + G
+"nmap <M-g> :YcmCompleter GoToDefinitionElseDeclaration <C-R>=expand("<cword>")<CR><CR>
+"}}}
 
 
 

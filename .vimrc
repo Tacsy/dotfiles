@@ -76,7 +76,9 @@ let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_complete_in_comments = 1
 let g:ycm_complete_in_strings = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_python_binary_path = 'python'
+let g:ycm_path_to_python_interpreter = '/home/xr7/apps/anaconda2/bin/python'
+"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
 let g:syntastic_cpp_check_header = 1
@@ -102,7 +104,8 @@ set cursorcolumn
 set textwidth=120                                                                                                             
 ""hightlight search results 
 set hlsearch
-
+""set turecolor
+set termguicolors
 
 "" auto add head file
 "" .py file into add header

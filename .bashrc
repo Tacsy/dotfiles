@@ -31,7 +31,8 @@ HISTFILESIZE=1000
 
 # Module load for use
 module load matlab
-module load g09
+#module load g09
+module load g16.A.03
 module load amber14
 module load mpi/openmpi-1.10.0
 module load mpi4py
@@ -55,6 +56,7 @@ alias etmem='scontrol -o show nodes | awk '"'"' {print $1,"\t", $6,"\t", $4,"\t"
 alias etinfo='sinfo | grep 'et''
 alias etreport='sreport user TopUsage Group TopCount=30 start=0401'
 alias etshare='sshare -A am424,bjr29,cl221,jv100,lz91,ml340,nfp3,pz19,rl108,xr7,yz146,zm14,rt131,yz325'
+alias mysacct='sacct -u xr7 --format=user,jobid,jobname%20,cputime,elapsed,ncpus,state'
 # aliases for regular expression commmand
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
@@ -76,6 +78,11 @@ up (){
 	cd $d
 }
 
+# Show WorkDir of specific JOB
+jobdir (){
+    scontrol show jobid=$1 | grep 'WorkDir'
+}
+
 # function for powerline shell
 function _update_ps1() {
     PS1="$(/home/xr7/apps/powerline-shell/powerline-shell.py $? 2> /dev/null)"
@@ -85,6 +92,5 @@ if [ "$TERM" != "linux" ]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
-# added by Anaconda2 4.2.0 installer
+# added by Anaconda2 4.3.1 installer
 export PATH="/home/xr7/apps/anaconda2/bin:$PATH"
-

@@ -32,36 +32,47 @@ HISTFILESIZE=1000
 # Module load for use
 module load matlab
 #module load g09
-module load g16.A.03
+#module load g16.A.03
+module load g16.A.03_newpgi
 module load amber14
 module load mpi/openmpi-1.10.0
 module load mpi4py
 #module load vmd/1.9.2
 module load namd/2.11-single-node
+#load  openeye for use, then openeye can be imported in python script, and sys.path() and $PYTHONPATH are updated
+module load openeye/2017
 
 # User specific aliases
+alias ls='ls --color=auto'
 alias ll='ls -CFlh --color=auto'
 alias la='ls -alh --color=auto'
 # set Vim editor as Vi
 alias vim='/home/zc62/local/bin/vim'
 alias vi='vim'
+# aliases for GROMACS
+#alias gmx='gmx_mpi_d'
 # aliases for ssh
 alias sftpxr7='sftp xr7@dnb06.chem.duke.edu'
 # aliases for et-mei slurm control
+alias thisd='du -m -d 1'
 alias que='squeue -u xr7 -o "%.18i %.09P %.20j %.8u %.2t %.10M %.6D %R"'
-alias queall='squeue --partition=et2,et1_new,et1_old,et3,et3short' 
+alias queall='squeue --partition=et2,et1_new,et1_old,et3,et3short,et2_medmem' 
 alias cancel='scancel'
 alias submit='sbatch'
-alias etmem='scontrol -o show nodes | awk '"'"' {print $1,"\t", $6,"\t", $4,"\t", $14,"\t", $15}'"'"' | grep "et0"'
+alias etmem='scontrol -o show nodes | awk '"'"' {print $1,"\t", $6,"\t", $4,"\t", $14,"\t", $15}'"'"' | grep "et0" | grep -v "et019\|et02[0-9]\|et03[0-6]"'
 alias etinfo='sinfo | grep 'et''
 alias etreport='sreport user TopUsage Group TopCount=30 start=0401'
-alias etshare='sshare -A am424,bjr29,cl221,jv100,lz91,ml340,nfp3,pz19,rl108,xr7,yz146,zm14,rt131,yz325,jy204'
-alias mysacct='sacct -u xr7 --format=user,jobid,jobname%20,cputime,elapsed,ncpus,state'
+alias etshare='sshare -A am424,yz325,jv100,lz91,ml340,pz19,rl108,xr7,zm14,rt131,jy204'
+alias mysacct='sacct -S `date --date="2 days ago" +"%Y"-"%m"-"%d"` -u xr7 --format=user,jobid,jobname%20,cputime,elapsed,ncpus,state'
 # aliases for regular expression commmand
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 # OpenBLAS
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/xr7/apps/openblas/OpenBLAS-0.2.14-gcc-4.8.2-i4/lib
+
+#cp/mv files and then cd to that directory
+cpd() { cp $@ && cd $_; }
+mvd() { mv $@ && cd $_; }
 
 # Up function
 up (){

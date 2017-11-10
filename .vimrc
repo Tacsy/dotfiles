@@ -2,10 +2,15 @@
 set nocompatible
 set backspace=indent,eol,start
 
+autocmd BufReadPost *
+  \ if line("'\"") > 1 && line("'\"") <= line("$") |
+  \   exe "normal! g`\"" |
+  \ endif
+
 ""vim plugin manager Vundle environment set up
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call vundle#begin()                                                                                                                                                   
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
@@ -85,9 +90,9 @@ map <C-S-Tab> :MBEbp<cr>
 "" Plugin YCM settings.
 "let g:ycm_complete_in_strings = 1
 "let g:ycm_collect_identifiers_from_comments_and_strings = 0
-"let g:ycm_python_binary_path = 'python'
-"let g:ycm_path_to_python_interpreter = '/home/xr7/apps/anaconda2/bin/python'
-""let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_python_binary_path = 'python'
+let g:ycm_path_to_python_interpreter = '/home/xr7/apps/anaconda2/bin/python'
+
 "let g:syntastic_check_on_open=1
 "let g:syntastic_enable_signs=1
 "let g:syntastic_cpp_check_header = 1
@@ -100,7 +105,7 @@ let g:ycm_complete_in_comments=1
 " allow vim load .ycm_extra_conf.py
 let g:ycm_confirm_extra_conf=0
 " turn on YCM tag complete engine
-let g:ycm_collect_identifiers_from_tags_files=1
+"let g:ycm_collect_identifiers_from_tags_files=1
 " include tags
 "set tags+=/data/misc/software/misc./vim/stdcpp.tags
 " YCM OmniCppComplete engine. Set shortcut to ;;
@@ -137,11 +142,11 @@ set number
 set cursorline
 set cursorcolumn
 ""set line width 
-set textwidth=120                                                                                                             
+set textwidth=200                                                                                                             
 ""hightlight search results 
 set hlsearch
 ""set turecolor
-set termguicolors
+"set termguicolors
 
 "" auto add head file
 "" .py file into add header

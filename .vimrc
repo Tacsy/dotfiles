@@ -88,7 +88,7 @@ map <C-S-Tab> :MBEbp<cr>
 
 
 "" Plugin YCM settings.
-"let g:ycm_complete_in_strings = 1
+let g:ycm_complete_in_strings = 1
 "let g:ycm_collect_identifiers_from_comments_and_strings = 0
 let g:ycm_python_binary_path = 'python'
 let g:ycm_path_to_python_interpreter = '/home/xr7/apps/anaconda2/bin/python'
@@ -142,7 +142,7 @@ set number
 set cursorline
 set cursorcolumn
 ""set line width 
-set textwidth=200                                                                                                             
+set textwidth=80                                                                                                             
 ""hightlight search results 
 set hlsearch
 ""set turecolor

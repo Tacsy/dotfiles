@@ -46,6 +46,7 @@ module load openeye/2017
 alias ls='ls --color=auto'
 alias ll='ls -CFlh --color=auto'
 alias la='ls -alh --color=auto'
+alias ack='~zc62/local/bin/ack'
 # set Vim editor as Vi
 alias vim='/home/zc62/local/bin/vim'
 alias vi='vim'
@@ -62,7 +63,7 @@ alias submit='sbatch'
 alias etmem='scontrol -o show nodes | awk '"'"' {print $1,"\t", $6,"\t", $4,"\t", $14,"\t", $15}'"'"' | grep "et0" | grep -v "et019\|et02[0-9]\|et03[0-6]"'
 alias etinfo='sinfo | grep 'et''
 alias etreport='sreport user TopUsage Group TopCount=30 start=0401'
-alias etshare='sshare -A am424,yz325,jv100,lz91,ml340,pz19,rl108,xr7,zm14,rt131,jy204'
+alias etshare='sshare -A am424,yz325,jv100,lz91,ml340,pz19,rl108,xr7,zm14,rt131,jy204,bjr29'
 alias mysacct='sacct -S `date --date="2 days ago" +"%Y"-"%m"-"%d"` -u xr7 --format=user,jobid,jobname%20,cputime,elapsed,ncpus,state'
 # aliases for regular expression commmand
 alias grep='grep --color=auto'

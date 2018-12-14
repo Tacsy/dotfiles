@@ -35,10 +35,12 @@ module load matlab
 #module load g16.A.03
 module load g16.A.03_newpgi
 module load amber14
-module load mpi/openmpi-1.10.0
+module load mpi/openmpi-2.0.3_gcc
 module load mpi4py
-#module load vmd/1.9.2
+module load vmd/1.9.3.gui
 module load namd/2.11-single-node
+module load schrodinger
+module load adf2017.103
 #load  openeye for use, then openeye can be imported in python script, and sys.path() and $PYTHONPATH are updated
 module load openeye/2017
 
@@ -60,10 +62,10 @@ alias que='squeue -u xr7 -o "%.18i %.09P %.20j %.8u %.2t %.10M %.6D %R"'
 alias queall='squeue --partition=et2,et1_new,et1_old,et3,et3_medmem,et3short,et2_medmem,et4p' 
 alias cancel='scancel'
 alias submit='sbatch'
-alias etmem='scontrol -o show nodes | awk '"'"' {print $1,"\t", $6,"\t", $4,"\t", $14,"\t", $15}'"'"' | grep "et0" | grep -v "et019\|et02[0-9]\|et03[0-6]"'
-alias etinfo='sinfo | grep 'et''
+alias etmem='scontrol -o show nodes | awk '"'"' {print $1,"\t",$6,"\t",$4,"\t",$14,"\t", $15}'"'"' | grep "et0" | grep -v "et01[7-9]\|et02[0-9]\|et03[0-9]\|et05[2-9]\|et06[0-3]"'
+alias etinfo='sinfo |grep -E "et4p|et2|et1"'
 alias etreport='sreport user TopUsage Group TopCount=30 start=0401'
-alias etshare='sshare -A am424,yz325,jv100,lz91,ml340,pz19,xr7,rt131,jy204,zz130'
+alias etshare='sshare -A am424,yz325,jv100,lz91,ml340,pz19,xr7,rt131,jy204,zz130,jlt84'
 alias mysacct='sacct -S `date --date="2 days ago" +"%Y"-"%m"-"%d"` -u xr7 --format=user,jobid,jobname%20,cputime,elapsed,ncpus,state'
 # aliases for regular expression commmand
 alias grep='grep --color=auto'
@@ -96,13 +98,24 @@ jobdir (){
 }
 
 # function for powerline shell
+#function _update_ps1() {
+#    PS1="$(/home/xr7/apps/powerline-shell/powerline-shell.py $? 2> /dev/null)"
+#}
+#
+#if [ "$TERM" != "linux" ]; then
+#    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+#fi
+
+# prompt formatter from powerline-shell
 function _update_ps1() {
-    PS1="$(/home/xr7/apps/powerline-shell/powerline-shell.py $? 2> /dev/null)"
+    PS1=$(powerline-shell $?)
 }
 
-if [ "$TERM" != "linux" ]; then
+if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 fi
 
 # added by Anaconda2 4.3.1 installer
 export PATH="/home/xr7/apps/anaconda2/bin:$PATH"
+
+

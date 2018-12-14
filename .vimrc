@@ -22,6 +22,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'Yggdroot/indentLine'
+Plugin 'jiangmiao/auto-pairs'
 call vundle#end()
 filetype plugin indent on
 
@@ -72,8 +73,10 @@ let g:airline_symbols.linenr = ''
 let g:airline_symbols.maxlinenr = '☰'
 " Font from https://github.com/ryanoasis/nerd-fonts
 "}}}
+"
+"
 
- 
+
 " indentLine{{{
 let g:indentLine_char = '|'
 let g:indentLine_enabled = 1
@@ -146,7 +149,7 @@ set textwidth=80
 ""hightlight search results 
 set hlsearch
 ""set turecolor
-"set termguicolors
+""set termguicolors
 
 "" auto add head file
 "" .py file into add header
@@ -157,3 +160,14 @@ function HeaderPython()
     normal o
 endf
 autocmd bufnewfile *.py call HeaderPython()
+
+
+" setting the font to consolas, 11pt
+"if has("gui_running")
+"    if has("gui_gtk2")
+"        set guifont=Consolas\ 11
+"    else
+"        set guifont=Consolas:h11
+"    endif
+"endif
+
